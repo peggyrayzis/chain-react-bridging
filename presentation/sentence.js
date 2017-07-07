@@ -7,6 +7,7 @@ const StyledSentence = ({
   bottom,
   textSizeTop = '2.8em',
   textSizeBottom = '1.8em',
+  appear = true,
 }) =>
   <div
     style={{
@@ -25,18 +26,30 @@ const StyledSentence = ({
     >
       {top.toUpperCase()}
     </Text>
-    <Appear>
-      <Text
-        textColor="secondary"
-        margin="0px"
-        textAlign="left"
-        textFont="Yanone Kaffeesatz"
-        textSize={textSizeBottom}
-        lineHeight={1.6}
-      >
-        {bottom.toUpperCase()}
-      </Text>
-    </Appear>
+    {appear
+      ? <Appear>
+          <Text
+            textColor="secondary"
+            margin="0px"
+            textAlign="left"
+            textFont="Yanone Kaffeesatz"
+            textSize={textSizeBottom}
+            lineHeight={1.6}
+          >
+            {bottom.toUpperCase()}
+          </Text>
+        </Appear>
+      : <Text
+          textColor="secondary"
+          margin="0px"
+          textAlign="left"
+          textFont="Yanone Kaffeesatz"
+          textSize={textSizeBottom}
+          lineHeight={1.6}
+        >
+          {bottom.toUpperCase()}
+        </Text>}
+
   </div>;
 
 export default Radium(StyledSentence);

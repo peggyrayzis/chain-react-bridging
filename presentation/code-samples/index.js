@@ -35,4 +35,71 @@ bars(({ args }) => JSON.stringify(args).length, 20, true)(
 ).subscribe();
 `;
 
-export default { bridgeMessage, bridgeLogs, snoopy1, snoopy2 };
+const nativeModuleConfig = `{
+  moduleName: 'ExampleModule',
+  constants: {},
+  methods: ['chainReact', 'bridgingIsAwesome'],
+  promiseMethods: [0],
+  syncMethods: [1],
+};`;
+
+const iOSUiComponent1 = `// ExampleViewManager.h
+
+#if __has_include(<React/RCTViewManager.h>)
+#import <React/RCTViewManager.h>
+#elif __has_include(“RCTViewManager.h”)
+#import “RCTViewManager.h”
+#else
+#import “React/RCTViewManager.h” // Required when used as a Pod in a Swift project
+#endif
+
+@interface ExampleViewManager : RCTViewManager
+
+@end
+`;
+
+const iOSUiComponent2 = `// ExampleViewManager.m
+
+#import <Foundation/Foundation.h>
+#import "ExampleView.h"
+#import "ExampleViewManager.h"
+
+#if __has_include(<React/RCTBridge.h>)
+#import <React/RCTBridge.h>
+#elif __has_include(“RCTBridge.h”)
+#import “RCTBridge.h”
+#else
+#import “React/RCTBridge.h” // Required when used as a Pod in a Swift project
+#endif`;
+
+const iOSUiComponent3 = `@implementation ExampleViewManager
+@synthesize bridge = _bridge;
+
+RCT_EXPORT_MODULE();
+
+- (UIView *)view
+{
+  return [[ExampleView alloc] initWithEventDispatcher:self.bridge.eventDispatcher];
+}
+
+RCT_EXPORT_VIEW_PROPERTY(exampleProp, NSString)
+
+- (NSDictionary *)constantsToExport
+{
+  return @{
+           @"EXAMPLE": @"example"
+         };
+}
+
+@end`;
+
+export default {
+  bridgeMessage,
+  bridgeLogs,
+  snoopy1,
+  snoopy2,
+  nativeModuleConfig,
+  iOSUiComponent1,
+  iOSUiComponent2,
+  iOSUiComponent3,
+};

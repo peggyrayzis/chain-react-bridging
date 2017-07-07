@@ -11,18 +11,18 @@ import {
   Link,
   Slide,
   Text,
-  Table,
-  TableRow,
-  TableItem,
-  TableBody,
 } from 'spectacle';
 
 import Header from './header';
 import ContentWrapper from './content-wrapper';
 import StyledSentence from './sentence';
+import SocialProfiles from './social-profiles';
 import Pie from './pie';
 import StyledList from './list';
+import LanguageList from './language-list';
+
 import codeSamples from './code-samples';
+import images from './images';
 
 // Import image preloader util
 import preloader from 'spectacle/lib/utils/preloader';
@@ -33,25 +33,6 @@ import createTheme from 'spectacle/lib/themes/default';
 // Require CSS
 require('normalize.css');
 require('spectacle/lib/themes/default/index.css');
-
-const images = {
-  rotterdamBridge: require('../assets/rotterdam-bridge.jpg'),
-  suspensionBridge: require('../assets/suspension-bridge.jpg'),
-  ohashiBridge: require('../assets/ohashibridge.jpg'),
-  bridgeDiagram1: require('../assets/bridge-diagram-1.png'),
-  bridgeDiagram2: require('../assets/bridge-diagram-2.png'),
-  goldenGateBridge: require('../assets/golden-gate-bridge.jpg'),
-  helixBridge: require('../assets/helix-bridge.jpg'),
-  brooklynBridge: require('../assets/brooklyn-bridge.jpg'),
-  congestion: require('../assets/crowded.jpg'),
-  bridgeJump: require('../assets/bridge-jump.jpg'),
-  snoopy: require('../assets/snoopy.png'),
-  rnArchitecture1: require('../assets/rn-architecture-1.png'),
-  rnArchitecture2: require('../assets/rn-architecture-2.png'),
-  rnArchitecture3: require('../assets/rn-architecture-3.png'),
-  peggy: require('../assets/peggy.jpg'),
-  mls: require('../assets/mls-logo.svg'),
-};
 
 preloader(images);
 
@@ -328,40 +309,74 @@ export default class Presentation extends React.Component {
             </p>
           </Text>
         </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="primary"
-          maxWidth="90%"
-          maxHeight="90%"
-          padding="0px"
-          margin="0px"
-        >
-          <ContentWrapper styles={{ margin: '1em 0em 0em 0em' }}>
-            <Image src={images.rnArchitecture1} width="78%" />
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="demystifying react native internals"
+              margin="1em 0em 1em 0em"
+            />
+            <Image src={images.threads} width="72%" />
           </ContentWrapper>
         </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="primary"
-          maxWidth="90%"
-          maxHeight="90%"
-          padding="0px"
-          margin="0px"
-        >
-          <ContentWrapper styles={{ margin: '1em 0em 0em 0em' }}>
-            <Image src={images.rnArchitecture2} width="78%" />
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="demystifying react native internals"
+              margin="1em 0em 1em 0em"
+            />
+            <Link href="https://github.com/facebook/react-native/blob/master/Libraries/BatchedBridge/NativeModules.js#L20">
+              <Text
+                margin="0px"
+                textColor="secondary"
+                textSize="1.3em"
+                lineHeight={1.4}
+                padding="0px 0px 40px 0px"
+              >
+                JS knows about your native modules at runtime:
+              </Text>
+            </Link>
+            <CodePane
+              textSize=".75em"
+              lang="jsx"
+              padding="0px"
+              source={codeSamples.nativeModuleConfig}
+            />
+            <Text
+              margin="0px"
+              textColor="secondary"
+              textSize="1.3em"
+              lineHeight={1.4}
+              padding="40px 0px 40px 0px"
+            >
+              * Remember this for later 😀
+            </Text>
           </ContentWrapper>
         </Slide>
-        <Slide
-          transition={['fade']}
-          bgColor="primary"
-          maxWidth="90%"
-          maxHeight="90%"
-          padding="0px"
-          margin="0px"
-        >
-          <ContentWrapper styles={{ margin: '1em 0em 0em 0em' }}>
-            <Image src={images.rnArchitecture3} width="78%" />
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="demystifying react native internals"
+              margin="1em 0em 1em 0em"
+            />
+            <Image src={images.rnArchitecture1} width="74%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="demystifying react native internals"
+              margin="1em 0em 1em 0em"
+            />
+            <Image src={images.rnArchitecture2} width="74%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="demystifying react native internals"
+              margin="1em 0em 1em 0em"
+            />
+            <Image src={images.rnArchitecture3} width="74%" />
           </ContentWrapper>
         </Slide>
         <Slide
@@ -548,15 +563,21 @@ export default class Presentation extends React.Component {
         <Slide {...slideProps}>
           <ContentWrapper>
             <Header text="choose your language" />
-            <StyledList
-              textColor={colors.tertiary}
-              items={[
-                'Easy to setup & convert any Java file',
-                'Runtime library is <1MB',
-                `Works with react native link`,
-                'First class support for iOS coming soon',
-              ]}
-            />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'flex-start',
+                width: '100%',
+              }}
+            >
+              <LanguageList
+                platform="iOS"
+                languages={['Objective-C', 'Swift']}
+              />
+              <LanguageList platform="Android" languages={['Java', 'Kotlin']} />
+              <LanguageList platform="Windows" languages={['C#']} />
+            </div>
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps}>
@@ -572,6 +593,155 @@ export default class Presentation extends React.Component {
               ]}
             />
           </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="native modules vs. ui components"
+              margin="1em 0em 1.5em 0em"
+            />
+            <div
+              style={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                width: '100%',
+                height: '100%',
+              }}
+            >
+              <StyledList
+                textColor={colors.tertiary}
+                textSize="1.3em"
+                appear={false}
+                items={[
+                  `Most of the time, you're choosing one or the other`,
+                  `Occasionally, you'll need to integrate both (e.g. video player)`,
+                  'Integrating both is complicated because of how threading works in RN',
+                ]}
+              />
+              <div
+                style={{
+                  width: '60%',
+                  padding: '0px 30px',
+                  backgroundImage: `url(${images.nativeThreads})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                }}
+              />
+            </div>
+          </ContentWrapper>
+        </Slide>
+        <Slide
+          align="flex-start center"
+          transition={['fade']}
+          bgColor="primary"
+          maxWidth="90%"
+        >
+          <StyledSentence
+            top="Native UI Component"
+            textSizeTop="3em"
+            bottom="iOS (Objective-C)"
+            textSizeBottom="2em"
+            appear={false}
+          />
+        </Slide>
+        <Slide {...slideProps} style={{ height: '100%' }}>
+          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
+            <Header
+              text="Subclass off the RCTViewManager"
+              margin="1em 0em 1em 0em"
+            />
+            <CodePane
+              textSize=".6em"
+              lang="objc"
+              padding="0px"
+              source={codeSamples.iOSUiComponent1}
+            />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps} style={{ height: '100%' }}>
+          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
+            <Header
+              text="Import all your header files"
+              margin="1em 0em 1em 0em"
+            />
+            <CodePane
+              textSize=".6em"
+              lang="objc"
+              padding="0px"
+              source={codeSamples.iOSUiComponent2}
+            />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps} style={{ height: '100%' }}>
+          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
+            <Header
+              text="Your ViewManager is a singleton that returns your View"
+              margin="1em 0em 1em 0em"
+            />
+            <CodePane
+              textSize=".5em"
+              lang="objc"
+              padding="0px"
+              source={codeSamples.iOSUiComponent3}
+            />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps} style={{ height: '100%' }}>
+          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
+            <Header
+              text="expose your component's props & export constants"
+              margin="1em 0em 1em 0em"
+            />
+            <CodePane
+              textSize=".5em"
+              lang="objc"
+              padding="0px"
+              source={codeSamples.iOSUiComponent3}
+            />
+          </ContentWrapper>
+        </Slide>
+        <Slide
+          align="flex-start center"
+          transition={['fade']}
+          bgColor="primary"
+          maxWidth="90%"
+        >
+          <StyledSentence
+            top="Native UI Component"
+            textSizeTop="3em"
+            bottom="Android (Java)"
+            textSizeBottom="2em"
+            appear={false}
+          />
+        </Slide>
+        <Slide
+          align="flex-start center"
+          transition={['fade']}
+          bgColor="primary"
+          maxWidth="90%"
+        >
+          <StyledSentence
+            top="Native Module"
+            textSizeTop="3em"
+            bottom="iOS (Objective-C)"
+            textSizeBottom="2em"
+            appear={false}
+          />
+        </Slide>
+        <Slide
+          align="flex-start center"
+          transition={['fade']}
+          bgColor="primary"
+          maxWidth="90%"
+        >
+          <StyledSentence
+            top="Native Module"
+            textSizeTop="3em"
+            bottom="Android (Java)"
+            textSizeBottom="2em"
+            appear={false}
+          />
         </Slide>
         <Slide
           align="flex-start center"
@@ -616,16 +786,26 @@ export default class Presentation extends React.Component {
           </ContentWrapper>
         </Slide>
         <Slide
-          align="flex-start center"
           transition={['fade']}
-          bgColor="primary"
+          bgImage={images.highTrestleBridge}
+          bgDarken={0.4}
           maxWidth="90%"
+          maxHeight="90%"
         >
-          <StyledSentence
-            top="Bridging shouldn't be your first choice,"
-            textSizeTop="1.7em"
-            bottom="but it's a useful tool to have in your arsenal. 🛠"
-            textSizeBottom="1em"
+          <Text
+            textSize="2.2em"
+            textFont="Yanone Kaffeesatz"
+            lineHeight={1.2}
+            textColor="primary"
+          >
+            <p style={{ textShadow: '1px 1px 2px #2a292f', margin: '0px' }}>
+              @PEGGYRAYZIS
+            </p>
+          </Text>
+          <SocialProfiles
+            twitter={images.twitterWhite}
+            github={images.github}
+            medium={images.medium}
           />
         </Slide>
       </Deck>
