@@ -49,12 +49,4 @@ export default {
   snoopy1,
   snoopy2,
   nativeModuleConfig,
-  iOSUiComponent1,
-  iOSUiComponent2,
-  iOSUiComponent3,
-  iOSUiComponent4,
-  iOSUiComponent5,
-  androidUiComponent1,
-  androidUiComponent2,
-  jsUiComponent,
 };

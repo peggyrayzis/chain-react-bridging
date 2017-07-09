@@ -25,6 +25,7 @@ const LanguageList = ({ platform, languages }) =>
     </Text>
     {languages.map(language =>
       <Text
+        key={language}
         margin="0px"
         textColor="tertiary"
         textSize="1.5em"

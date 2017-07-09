@@ -534,7 +534,7 @@ export default class Presentation extends React.Component {
             textSize="2.4em"
           >
             <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              HOW TO BRIDGE YOUR FIRST<br />NATIVE MODULE & UI COMPONENT
+              HOW TO BRIDGE<br />NATIVE MODULES & UI COMPONENTS
             </p>
           </Text>
         </Slide>
@@ -623,6 +623,42 @@ export default class Presentation extends React.Component {
             appear={false}
           />
         </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="viewmanager is a factory for views"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.uiComponent1} width="73%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="react tells viewmanager to construct the view"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.uiComponent2} width="73%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="a reference to the view is stored on the bridge"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.uiComponent3} width="73%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="render your native component to display the ui ✨"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.uiComponent4} width="73%" />
+          </ContentWrapper>
+        </Slide>
         <Slide {...slideProps} style={{ height: '100%' }}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="recap: ui components" />
@@ -650,6 +686,33 @@ export default class Presentation extends React.Component {
             appear={false}
           />
         </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="all native modules are globally registered"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.module1} width="90%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="when we invoke a method, we send a message to the queue"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.module2} width="90%" />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header
+              text="native executes the call ✨"
+              margin="1em 0em .6em 0em"
+            />
+            <Image src={images.module3} width="90%" />
+          </ContentWrapper>
+        </Slide>
         <Slide {...slideProps} style={{ height: '100%' }}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="recap: native modules" />
@@ -657,8 +720,8 @@ export default class Presentation extends React.Component {
               textColor={colors.tertiary}
               items={[
                 'Only one instance of the module is created per bridge',
-                'N->JS: Callbacks, promises, or emitting events',
-                'JS->N: Method calls',
+                'N-->JS: Callbacks, promises, or emitting events',
+                'JS-->N: Method calls',
                 `Accessing constants is synchronous`,
               ]}
             />
@@ -678,7 +741,7 @@ export default class Presentation extends React.Component {
             textSize="2.4em"
           >
             <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              {`Bridging is error prone 😭`.toUpperCase()}
+              BRIDGING IS ERROR PRONE<br />& TIME CONSUMING 😭
             </p>
           </Text>
         </Slide>
@@ -689,7 +752,7 @@ export default class Presentation extends React.Component {
               textColor={colors.tertiary}
               items={[
                 'Context switching between languages & files',
-                'A lot of boilerplate',
+                'So. Much. Boilerplate. 😣',
                 `Instructions are piecemeal`,
               ]}
             />
@@ -702,17 +765,54 @@ export default class Presentation extends React.Component {
           maxWidth="90%"
           maxHeight="90%"
         >
-          <Text
-            textFont="Yanone Kaffeesatz"
-            lineHeight={1.4}
-            textColor="primary"
-            textSize="2.4em"
-          >
-            <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              REACT-NATIVE-CREATE-BRIDGE:<br />
-              A CLI THAT GENERATES BRIDGE TEMPLATES WITH EASE 🎉
-            </p>
-          </Text>
+          <Link href="https://github.com/peggyrayzis/react-native-create-bridge">
+            <Text
+              textFont="Yanone Kaffeesatz"
+              lineHeight={1.4}
+              textColor="primary"
+              textSize="2.4em"
+            >
+              <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
+                REACT-NATIVE-CREATE-BRIDGE:<br />
+                A CLI THAT GENERATES BRIDGE TEMPLATES WITH EASE 🎉
+              </p>
+            </Text>
+          </Link>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header text="choose a language & bridge module type" />
+            <Image
+              src={images.rncb}
+              height="12em"
+              style={{ borderRadius: '6px' }}
+            />
+          </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps}>
+          <ContentWrapper>
+            <Header margin="1em 0em 1.2em 0em" text="no more boilerplate 🎉" />
+            <div
+              style={{
+                display: 'flex',
+                width: '100%',
+                justifyContent: 'space-between',
+              }}
+            >
+              <Image
+                src={images.rncbSample}
+                height="14em"
+                margin="0em .5em 0em 0em"
+                style={{ borderRadius: '6px' }}
+              />
+              <Image
+                src={images.rncbSample2}
+                height="14em"
+                margin="0em 0em 0em .5em"
+                style={{ borderRadius: '6px' }}
+              />
+            </div>
+          </ContentWrapper>
         </Slide>
         <Slide
           transition={['fade']}
