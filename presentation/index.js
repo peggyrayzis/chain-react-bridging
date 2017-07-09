@@ -6,8 +6,6 @@ import {
   Deck,
   Image,
   Heading,
-  ListItem,
-  List,
   Link,
   Slide,
   Text,
@@ -23,6 +21,7 @@ import LanguageList from './language-list';
 
 import codeSamples from './code-samples';
 import images from './images';
+import notes from './notes';
 
 // Import image preloader util
 import preloader from 'spectacle/lib/utils/preloader';
@@ -76,6 +75,7 @@ export default class Presentation extends React.Component {
           align="flex-start flex-start"
           transition={['fade']}
           bgImage={images.rotterdamBridge}
+          notes={notes.intro}
         >
           <ContentWrapper>
             <Text
@@ -119,6 +119,7 @@ export default class Presentation extends React.Component {
           bgImage={images.peggy}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.intro2}
         >
           <div
             style={{
@@ -167,6 +168,7 @@ export default class Presentation extends React.Component {
           bgDarken={0.6}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.bridging}
         >
           <Text
             textFont="Yanone Kaffeesatz"
@@ -189,6 +191,7 @@ export default class Presentation extends React.Component {
           maxWidth="90%"
           padding="0px"
           margin="0px"
+          notes={notes.js}
         >
           <Image width="88%" src={images.bridgeDiagram1} />
         </Slide>
@@ -198,6 +201,7 @@ export default class Presentation extends React.Component {
           maxWidth="90%"
           padding="0px"
           margin="0px"
+          notes={notes.js2}
         >
           <Image width="88%" src={images.bridgeDiagram2} />
         </Slide>
@@ -210,6 +214,7 @@ export default class Presentation extends React.Component {
           <StyledSentence
             top="Bridging won't be part of your daily workflow"
             textSizeTop="3em"
+            appear={false}
             bottom="but it's useful to know how it works! 💡"
             textSizeBottom="1.3em"
           />
@@ -258,24 +263,6 @@ export default class Presentation extends React.Component {
               </div>
             </div>
           </ContentWrapper>
-        </Slide>
-        <Slide
-          transition={['fade']}
-          bgImage={images.suspensionBridge}
-          bgDarken={0.3}
-          maxWidth="90%"
-          maxHeight="90%"
-        >
-          <Text
-            textFont="Yanone Kaffeesatz"
-            lineHeight={1.4}
-            textColor="primary"
-            textSize="2.4em"
-          >
-            <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              {`If you're working with native code, you'll need to write a bridge!`.toUpperCase()}
-            </p>
-          </Text>
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
@@ -336,47 +323,38 @@ export default class Presentation extends React.Component {
               </Text>
             </Link>
             <CodePane
-              textSize=".75em"
+              textSize=".8em"
               lang="jsx"
               padding="0px"
               source={codeSamples.nativeModuleConfig}
             />
-            <Text
-              margin="0px"
-              textColor="secondary"
-              textSize="1.3em"
-              lineHeight={1.4}
-              padding="40px 0px 40px 0px"
-            >
-              * Remember this for later 😀
-            </Text>
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
             <Header
-              text="demystifying react native internals"
-              margin="1em 0em 1em 0em"
+              text="all interaction originates in native"
+              margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture1} width="74%" />
+            <Image src={images.rnArchitecture1} width="62%" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
             <Header
-              text="demystifying react native internals"
-              margin="1em 0em 1em 0em"
+              text="all communication passes through the bridge"
+              margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture2} width="74%" />
+            <Image src={images.rnArchitecture2} width="62%" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
             <Header
-              text="demystifying react native internals"
-              margin="1em 0em 1em 0em"
+              text="all communication passes through messagequeue.js"
+              margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture3} width="74%" />
+            <Image src={images.rnArchitecture3} width="62%" />
           </ContentWrapper>
         </Slide>
         <Slide
@@ -556,7 +534,7 @@ export default class Presentation extends React.Component {
             textSize="2.4em"
           >
             <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              HOW TO BUILD YOUR FIRST<br />REACT NATIVE BRIDGE
+              HOW TO BRIDGE YOUR FIRST<br />NATIVE MODULE & UI COMPONENT
             </p>
           </Text>
         </Slide>
@@ -582,13 +560,13 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
-            <Header text="kotlin is the future" />
+            <Header text="kotlin is 🔥🔥🔥" />
             <StyledList
               textColor={colors.tertiary}
               items={[
                 'Easy to setup & convert any Java file',
                 'Runtime library is <1MB',
-                `Works with react native link`,
+                `Works with react native link (PR merged)`,
                 'First class support for iOS coming soon',
               ]}
             />
@@ -610,7 +588,7 @@ export default class Presentation extends React.Component {
             >
               <StyledList
                 textColor={colors.tertiary}
-                textSize="1.3em"
+                textSize="1.5em"
                 appear={false}
                 items={[
                   `Most of the time, you're choosing one or the other`,
@@ -620,12 +598,12 @@ export default class Presentation extends React.Component {
               />
               <div
                 style={{
-                  width: '60%',
+                  width: '40%',
                   padding: '0px 30px',
                   backgroundImage: `url(${images.nativeThreads})`,
                   backgroundSize: 'contain',
                   backgroundRepeat: 'no-repeat',
-                  backgroundPosition: 'center',
+                  backgroundPosition: 'right',
                 }}
               />
             </div>
@@ -638,66 +616,23 @@ export default class Presentation extends React.Component {
           maxWidth="90%"
         >
           <StyledSentence
-            top="Native UI Component"
+            top="Native UI Components"
             textSizeTop="3em"
-            bottom="iOS (Objective-C)"
+            bottom="Cross-Platform Concepts"
             textSizeBottom="2em"
             appear={false}
           />
         </Slide>
         <Slide {...slideProps} style={{ height: '100%' }}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
-            <Header
-              text="Subclass off the RCTViewManager"
-              margin="1em 0em 1em 0em"
-            />
-            <CodePane
-              textSize=".6em"
-              lang="objc"
-              padding="0px"
-              source={codeSamples.iOSUiComponent1}
-            />
-          </ContentWrapper>
-        </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
-          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
-            <Header
-              text="Import all your header files"
-              margin="1em 0em 1em 0em"
-            />
-            <CodePane
-              textSize=".6em"
-              lang="objc"
-              padding="0px"
-              source={codeSamples.iOSUiComponent2}
-            />
-          </ContentWrapper>
-        </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
-          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
-            <Header
-              text="Your ViewManager is a singleton that returns your View"
-              margin="1em 0em 1em 0em"
-            />
-            <CodePane
-              textSize=".5em"
-              lang="objc"
-              padding="0px"
-              source={codeSamples.iOSUiComponent3}
-            />
-          </ContentWrapper>
-        </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
-          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
-            <Header
-              text="expose your component's props & export constants"
-              margin="1em 0em 1em 0em"
-            />
-            <CodePane
-              textSize=".5em"
-              lang="objc"
-              padding="0px"
-              source={codeSamples.iOSUiComponent3}
+            <Header text="recap: ui components" />
+            <StyledList
+              textColor={colors.tertiary}
+              items={[
+                'Only one instance of the ViewManager is created per bridge',
+                'ViewManager: Declares constants, sets props, and creates the view',
+                `View: Hook up lifecycle events & render children (subviews)`,
+              ]}
             />
           </ContentWrapper>
         </Slide>
@@ -708,82 +643,76 @@ export default class Presentation extends React.Component {
           maxWidth="90%"
         >
           <StyledSentence
-            top="Native UI Component"
+            top="Native Modules"
             textSizeTop="3em"
-            bottom="Android (Java)"
+            bottom="Cross-Platform Concepts"
             textSizeBottom="2em"
             appear={false}
           />
         </Slide>
-        <Slide
-          align="flex-start center"
-          transition={['fade']}
-          bgColor="primary"
-          maxWidth="90%"
-        >
-          <StyledSentence
-            top="Native Module"
-            textSizeTop="3em"
-            bottom="iOS (Objective-C)"
-            textSizeBottom="2em"
-            appear={false}
-          />
+        <Slide {...slideProps} style={{ height: '100%' }}>
+          <ContentWrapper styles={{ justifyContent: 'space-around' }}>
+            <Header text="recap: native modules" />
+            <StyledList
+              textColor={colors.tertiary}
+              items={[
+                'Only one instance of the module is created per bridge',
+                'N->JS: Callbacks, promises, or emitting events',
+                'JS->N: Method calls',
+                `Accessing constants is synchronous`,
+              ]}
+            />
+          </ContentWrapper>
         </Slide>
         <Slide
-          align="flex-start center"
           transition={['fade']}
-          bgColor="primary"
+          bgImage={images.brokenBridge}
+          bgDarken={0.4}
           maxWidth="90%"
+          maxHeight="90%"
         >
-          <StyledSentence
-            top="Native Module"
-            textSizeTop="3em"
-            bottom="Android (Java)"
-            textSizeBottom="2em"
-            appear={false}
-          />
-        </Slide>
-        <Slide
-          align="flex-start center"
-          transition={['fade']}
-          bgColor="primary"
-          maxWidth="90%"
-        >
-          <StyledSentence
-            top="react-native-create-bridge"
-            textSizeTop="2.2em"
-            bottom="A CLI that generates bridge module templates with ease"
-            textSizeBottom="1.1em"
-          />
+          <Text
+            textFont="Yanone Kaffeesatz"
+            lineHeight={1.4}
+            textColor="primary"
+            textSize="2.4em"
+          >
+            <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
+              {`Bridging is error prone 😭`.toUpperCase()}
+            </p>
+          </Text>
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
-            <Header text="react-native-create-bridge" />
-            <List style={{ width: '100%' }}>
-              <ListItem
-                textColor="tertiary"
-                textSize="1.5em"
-                padding="0 0 30px 0"
-              >
-                yarn global add react-native-create-bridge
-              </ListItem>
-              {[
-                'Run create-bridge in the root of your project',
-                `Follow the prompts`,
-                'Next steps will depend upon the language',
-              ].map(reason =>
-                <Appear key={reason}>
-                  <ListItem
-                    textColor="tertiary"
-                    textSize="1.5em"
-                    padding="0 0 30px 0"
-                  >
-                    {reason}
-                  </ListItem>
-                </Appear>,
-              )}
-            </List>
+            <Header text="bridging pain points" />
+            <StyledList
+              textColor={colors.tertiary}
+              items={[
+                'Context switching between languages & files',
+                'A lot of boilerplate',
+                `Instructions are piecemeal`,
+              ]}
+            />
           </ContentWrapper>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgImage={images.suspensionBridge}
+          bgDarken={0.3}
+          maxWidth="90%"
+          maxHeight="90%"
+        >
+          <Text
+            textFont="Yanone Kaffeesatz"
+            lineHeight={1.4}
+            textColor="primary"
+            textSize="2.4em"
+          >
+            <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
+              REACT-NATIVE-CREATE-BRIDGE:<br />
+              A CLI THAT GENERATES BRIDGE TEMPLATES WITH EASE 🎉
+            </p>
+          </Text>
         </Slide>
         <Slide
           transition={['fade']}

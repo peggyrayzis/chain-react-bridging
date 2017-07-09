@@ -17,18 +17,23 @@ const LanguageList = ({ platform, languages }) =>
     <Text
       margin="0px"
       textColor="secondary"
-      textSize="1.5em"
+      textSize="1.8em"
       lineHeight={1.4}
       padding="0px 0px 40px 0px"
     >
       {platform}
     </Text>
-    <StyledList
-      textSize="1.3em"
-      textColor="tertiary"
-      appear={false}
-      items={languages}
-    />
+    {languages.map(language =>
+      <Text
+        margin="0px"
+        textColor="tertiary"
+        textSize="1.5em"
+        lineHeight={1.2}
+        padding="0px 0px 40px 0px"
+      >
+        {language}
+      </Text>,
+    )}
   </div>;
 
 export default Radium(LanguageList);
