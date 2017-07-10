@@ -2,7 +2,7 @@ import React from 'react';
 import Radium from 'radium';
 import { Text } from 'spectacle';
 
-const Header = ({ text, style = {}, margin = '1em 0em 2em 0em' }) =>
+const Header = ({ text, style = {}, margin = '1em 0em 1.8em 0em' }) =>
   <Text
     margin={margin}
     textSize="1.5em"

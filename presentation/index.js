@@ -100,17 +100,19 @@ export default class Presentation extends React.Component {
             >
               IN REACT NATIVE
             </Text>
-            <Text
-              textColor="grey"
-              textFont="Yanone Kaffeesatz"
-              textSize="1.2em"
-              padding="0px"
-              margin="0px"
-              textAlign="left"
-              lineHeight={1.4}
-            >
-              @PEGGYRAYZIS
-            </Text>
+            <Link href="https://twitter.com/peggyrayzis">
+              <Text
+                textColor="grey"
+                textFont="Yanone Kaffeesatz"
+                textSize="1.2em"
+                padding="0px"
+                margin="0px"
+                textAlign="left"
+                lineHeight={1.4}
+              >
+                @PEGGYRAYZIS
+              </Text>
+            </Link>
           </ContentWrapper>
         </Slide>
         <Slide
@@ -136,17 +138,21 @@ export default class Presentation extends React.Component {
                 alignItems: 'center',
               }}
             >
-              <Text
-                textColor="primary"
-                textFont="Yanone Kaffeesatz"
-                textSize="2.7em"
-                margin="0px"
-                lineHeight={1.2}
-              >
-                <p style={{ textShadow: '1px 1px 2px #2a292f', margin: '0px' }}>
-                  @PEGGYRAYZIS
-                </p>
-              </Text>
+              <Link href="https://twitter.com/peggyrayzis">
+                <Text
+                  textColor="primary"
+                  textFont="Yanone Kaffeesatz"
+                  textSize="2.7em"
+                  margin="0px"
+                  lineHeight={1.2}
+                >
+                  <p
+                    style={{ textShadow: '1px 1px 2px #2a292f', margin: '0px' }}
+                  >
+                    @PEGGYRAYZIS
+                  </p>
+                </Text>
+              </Link>
               <Text
                 textColor="primary"
                 textFont="Yanone Kaffeesatz"
@@ -210,6 +216,7 @@ export default class Presentation extends React.Component {
           transition={['fade']}
           bgColor="primary"
           maxWidth="90%"
+          notes={notes.bridging2}
         >
           <StyledSentence
             top="Bridging won't be part of your daily workflow"
@@ -219,7 +226,11 @@ export default class Presentation extends React.Component {
             textSizeBottom="1.3em"
           />
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide
+          {...slideProps}
+          notes={notes.languageBreakdown}
+          style={{ height: '100%' }}
+        >
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="language breakdown for MLS prototype" />
             <div
@@ -241,7 +252,11 @@ export default class Presentation extends React.Component {
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide
+          {...slideProps}
+          notes={notes.languageBreakdown2}
+          style={{ height: '100%' }}
+        >
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="language breakdown for MLS prototype" />
             <div
@@ -264,7 +279,7 @@ export default class Presentation extends React.Component {
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.bridgingScenarios}>
           <ContentWrapper>
             <Header text="you will need a bridge if..." />
             <StyledList
@@ -284,6 +299,7 @@ export default class Presentation extends React.Component {
           bgDarken={0.4}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.rnInternals}
         >
           <Text
             textFont="Yanone Kaffeesatz"
@@ -296,16 +312,16 @@ export default class Presentation extends React.Component {
             </p>
           </Text>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide notes={notes.rnInternals2} {...slideProps}>
           <ContentWrapper>
             <Header
               text="demystifying react native internals"
               margin="1em 0em 1em 0em"
             />
-            <Image src={images.threads} width="72%" />
+            <Image src={images.threads} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rnInternals3}>
           <ContentWrapper>
             <Header
               text="demystifying react native internals"
@@ -315,9 +331,9 @@ export default class Presentation extends React.Component {
               <Text
                 margin="0px"
                 textColor="secondary"
-                textSize="1.3em"
-                lineHeight={1.4}
-                padding="0px 0px 40px 0px"
+                textSize="1.2em"
+                lineHeight={1.3}
+                padding="0px 0px 30px 0px"
               >
                 JS knows about your native modules at runtime:
               </Text>
@@ -328,33 +344,42 @@ export default class Presentation extends React.Component {
               padding="0px"
               source={codeSamples.nativeModuleConfig}
             />
+            <Text
+              margin="0px"
+              textColor="secondary"
+              textSize="1.2em"
+              lineHeight={1.3}
+              padding="30px 0px 0px 0px"
+            >
+              * Remember this for later 😉
+            </Text>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rnInternals4}>
           <ContentWrapper>
             <Header
               text="all interaction originates in native"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture1} width="62%" />
+            <Image src={images.rnArchitecture1} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rnInternals5}>
           <ContentWrapper>
             <Header
               text="all communication passes through the bridge"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture2} width="62%" />
+            <Image src={images.rnArchitecture2} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rnInternals6}>
           <ContentWrapper>
             <Header
               text="all communication passes through messagequeue.js"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture3} width="62%" />
+            <Image src={images.rnArchitecture3} height="14em" />
           </ContentWrapper>
         </Slide>
         <Slide
@@ -363,6 +388,7 @@ export default class Presentation extends React.Component {
           bgDarken={0.65}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.mq}
         >
           <Text
             textFont="Yanone Kaffeesatz"
@@ -375,7 +401,7 @@ export default class Presentation extends React.Component {
             </p>
           </Text>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.mq2}>
           <ContentWrapper>
             <Header text="how to prevent messagequeue congestion" />
             <StyledList
@@ -389,7 +415,7 @@ export default class Presentation extends React.Component {
             />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide {...slideProps} notes={notes.mq3} style={{ height: '100%' }}>
           <ContentWrapper>
             <Header text="inspecting the react native messagequeue" />
             <div
@@ -418,11 +444,11 @@ export default class Presentation extends React.Component {
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide {...slideProps} style={{ height: '100%' }} notes={notes.mq4}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header
               text="inspecting the react native messagequeue"
-              margin="1em 0em 1.5em 0em"
+              margin="1em 0em 1em 0em"
             />
             <Link href="https://github.com/facebook/react-native/blob/master/Libraries/BatchedBridge/MessageQueue.js">
               <Text margin="0px" textColor="secondary" textSize="1em">
@@ -432,29 +458,26 @@ export default class Presentation extends React.Component {
             <div
               style={{
                 display: 'flex',
-                marginTop: '40px',
+                marginTop: '20px',
                 alignItems: 'flex-start',
                 width: '100%',
               }}
             >
-              <div style={{ flex: 1 }}>
-                <CodePane
-                  textSize=".5em"
-                  lang="javascript"
-                  padding="0px"
-                  source={codeSamples.bridgeLogs}
-                />
-              </div>
+              <CodePane
+                textSize=".5em"
+                lang="javascript"
+                padding="0px"
+                source={codeSamples.bridgeLogs}
+              />
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide {...slideProps} style={{ height: '100%' }} notes={notes.mq5}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="inspecting the react native messagequeue" />
             <div
               style={{
                 display: 'flex',
-                marginTop: '40px',
                 alignItems: 'center',
                 width: '100%',
               }}
@@ -478,18 +501,22 @@ export default class Presentation extends React.Component {
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%', flex: 2 }}>
+        <Slide
+          {...slideProps}
+          style={{ height: '100%', flex: 2 }}
+          notes={notes.mq6}
+        >
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header
               text="inspecting the react native messagequeue"
-              margin="1em 0em 1.5em 0em"
+              margin="1em 0em 1em 0em"
             />
             <Text
               margin="0px"
               textColor="secondary"
-              textSize="1.3em"
-              lineHeight={1.4}
-              padding="0px 0px 40px 0px"
+              textSize="1.2em"
+              lineHeight={1.3}
+              padding="0px 0px 30px 0px"
             >
               Filter messages based on module or method:
             </Text>
@@ -504,9 +531,9 @@ export default class Presentation extends React.Component {
                 <Text
                   margin="0px"
                   textColor="secondary"
-                  textSize="1.3em"
-                  lineHeight={1.4}
-                  padding="40px 0px 40px 0px"
+                  textSize="1.2em"
+                  lineHeight={1.3}
+                  padding="30px 0px 40px 0px"
                 >
                   Trigger a yellow warning box by setting a threshold:
                 </Text>
@@ -526,6 +553,7 @@ export default class Presentation extends React.Component {
           bgDarken={0.4}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.bridgeHowTo}
         >
           <Text
             textFont="Yanone Kaffeesatz"
@@ -538,7 +566,7 @@ export default class Presentation extends React.Component {
             </p>
           </Text>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.language}>
           <ContentWrapper>
             <Header text="choose your language" />
             <div
@@ -558,7 +586,7 @@ export default class Presentation extends React.Component {
             </div>
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.kotlin}>
           <ContentWrapper>
             <Header text="kotlin is 🔥🔥🔥" />
             <StyledList
@@ -572,7 +600,7 @@ export default class Presentation extends React.Component {
             />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.uiVsModule}>
           <ContentWrapper>
             <Header
               text="native modules vs. ui components"
@@ -582,13 +610,11 @@ export default class Presentation extends React.Component {
               style={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                width: '100%',
-                height: '100%',
               }}
             >
               <StyledList
                 textColor={colors.tertiary}
-                textSize="1.5em"
+                textSize="1.3em"
                 appear={false}
                 items={[
                   `Most of the time, you're choosing one or the other`,
@@ -614,6 +640,7 @@ export default class Presentation extends React.Component {
           transition={['fade']}
           bgColor="primary"
           maxWidth="90%"
+          notes={notes.uiIntro}
         >
           <StyledSentence
             top="Native UI Components"
@@ -623,43 +650,47 @@ export default class Presentation extends React.Component {
             appear={false}
           />
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.uiComponent1}>
           <ContentWrapper>
             <Header
               text="viewmanager is a factory for views"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent1} width="73%" />
+            <Image src={images.uiComponent1} height="13em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.uiComponent2}>
           <ContentWrapper>
             <Header
               text="react tells viewmanager to construct the view"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent2} width="73%" />
+            <Image src={images.uiComponent2} height="13em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.uiComponent3}>
           <ContentWrapper>
             <Header
               text="a reference to the view is stored on the bridge"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent3} width="73%" />
+            <Image src={images.uiComponent3} height="13em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.uiComponent4}>
           <ContentWrapper>
             <Header
               text="render your native component to display the ui ✨"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent4} width="73%" />
+            <Image src={images.uiComponent4} height="13em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide
+          {...slideProps}
+          style={{ height: '100%' }}
+          notes={notes.uiComponentRecap}
+        >
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="recap: ui components" />
             <StyledList
@@ -677,6 +708,7 @@ export default class Presentation extends React.Component {
           transition={['fade']}
           bgColor="primary"
           maxWidth="90%"
+          notes={notes.nativeModulesIntro}
         >
           <StyledSentence
             top="Native Modules"
@@ -686,34 +718,34 @@ export default class Presentation extends React.Component {
             appear={false}
           />
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.module1}>
           <ContentWrapper>
             <Header
               text="all native modules are globally registered"
-              margin="1em 0em .6em 0em"
+              margin="1em 0em .4em 0em"
             />
-            <Image src={images.module1} width="90%" />
+            <Image src={images.module1} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.module2}>
           <ContentWrapper>
             <Header
               text="when we invoke a method, we send a message to the queue"
-              margin="1em 0em .6em 0em"
+              margin="1em 0em .4em 0em"
             />
-            <Image src={images.module2} width="90%" />
+            <Image src={images.module2} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.module3}>
           <ContentWrapper>
             <Header
               text="native executes the call ✨"
-              margin="1em 0em .6em 0em"
+              margin="1em 0em .4em 0em"
             />
-            <Image src={images.module3} width="90%" />
+            <Image src={images.module3} height="14em" />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps} style={{ height: '100%' }}>
+        <Slide {...slideProps} notes={notes.moduleRecap}>
           <ContentWrapper styles={{ justifyContent: 'space-around' }}>
             <Header text="recap: native modules" />
             <StyledList
@@ -781,7 +813,10 @@ export default class Presentation extends React.Component {
         </Slide>
         <Slide {...slideProps}>
           <ContentWrapper>
-            <Header text="choose a language & bridge module type" />
+            <Header
+              text="choose a language & bridge module type"
+              margin="1em 0em 1.2em 0em"
+            />
             <Image
               src={images.rncb}
               height="12em"
@@ -801,13 +836,13 @@ export default class Presentation extends React.Component {
             >
               <Image
                 src={images.rncbSample}
-                height="14em"
+                height="13em"
                 margin="0em .5em 0em 0em"
                 style={{ borderRadius: '6px' }}
               />
               <Image
                 src={images.rncbSample2}
-                height="14em"
+                height="13em"
                 margin="0em 0em 0em .5em"
                 style={{ borderRadius: '6px' }}
               />
