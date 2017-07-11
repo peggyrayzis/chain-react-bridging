@@ -13,6 +13,7 @@ import {
 
 import Header from './header';
 import ContentWrapper from './content-wrapper';
+import ComparisonTable from './comparison-table';
 import StyledSentence from './sentence';
 import SocialProfiles from './social-profiles';
 import Pie from './pie';
@@ -318,7 +319,7 @@ export default class Presentation extends React.Component {
               text="demystifying react native internals"
               margin="1em 0em 1em 0em"
             />
-            <Image src={images.threads} height="14em" />
+            <Image src={images.threads} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.rnInternals3}>
@@ -361,7 +362,7 @@ export default class Presentation extends React.Component {
               text="all interaction originates in native"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture1} height="14em" />
+            <Image src={images.rnArchitecture1} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.rnInternals5}>
@@ -370,7 +371,7 @@ export default class Presentation extends React.Component {
               text="all communication passes through the bridge"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture2} height="14em" />
+            <Image src={images.rnArchitecture2} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.rnInternals6}>
@@ -379,7 +380,7 @@ export default class Presentation extends React.Component {
               text="all communication passes through messagequeue.js"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.rnArchitecture3} height="14em" />
+            <Image src={images.rnArchitecture3} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide
@@ -656,7 +657,7 @@ export default class Presentation extends React.Component {
               text="viewmanager is a factory for views"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent1} height="13em" />
+            <Image src={images.uiComponent1} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.uiComponent2}>
@@ -665,7 +666,7 @@ export default class Presentation extends React.Component {
               text="react tells viewmanager to construct the view"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent2} height="13em" />
+            <Image src={images.uiComponent2} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.uiComponent3}>
@@ -674,7 +675,7 @@ export default class Presentation extends React.Component {
               text="a reference to the view is stored on the bridge"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent3} height="13em" />
+            <Image src={images.uiComponent3} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.uiComponent4}>
@@ -683,7 +684,7 @@ export default class Presentation extends React.Component {
               text="render your native component to display the ui ✨"
               margin="1em 0em .6em 0em"
             />
-            <Image src={images.uiComponent4} height="13em" />
+            <Image src={images.uiComponent4} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide
@@ -724,7 +725,7 @@ export default class Presentation extends React.Component {
               text="all native modules are globally registered"
               margin="1em 0em .4em 0em"
             />
-            <Image src={images.module1} height="14em" />
+            <Image src={images.module1} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.module2}>
@@ -733,7 +734,7 @@ export default class Presentation extends React.Component {
               text="when we invoke a method, we send a message to the queue"
               margin="1em 0em .4em 0em"
             />
-            <Image src={images.module2} height="14em" />
+            <Image src={images.module2} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.module3}>
@@ -742,7 +743,7 @@ export default class Presentation extends React.Component {
               text="native executes the call ✨"
               margin="1em 0em .4em 0em"
             />
-            <Image src={images.module3} height="14em" />
+            <Image src={images.module3} height="20em" />
           </ContentWrapper>
         </Slide>
         <Slide {...slideProps} notes={notes.moduleRecap}>
@@ -773,7 +774,7 @@ export default class Presentation extends React.Component {
             textSize="2.4em"
           >
             <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              BRIDGING IS ERROR PRONE<br />& TIME CONSUMING 😭
+              WHETHER YOU'RE NEW OR EXPERIENCED, BRIDGING IS PRONE TO ERROR.
             </p>
           </Text>
         </Slide>
@@ -796,6 +797,7 @@ export default class Presentation extends React.Component {
           bgDarken={0.3}
           maxWidth="90%"
           maxHeight="90%"
+          notes={notes.rncb1}
         >
           <Link href="https://github.com/peggyrayzis/react-native-create-bridge">
             <Text
@@ -806,12 +808,12 @@ export default class Presentation extends React.Component {
             >
               <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
                 REACT-NATIVE-CREATE-BRIDGE:<br />
-                A CLI THAT GENERATES BRIDGE TEMPLATES WITH EASE 🎉
+                A CLI THAT GENERATES BRIDGING TEMPLATES WITH EASE 🎉
               </p>
             </Text>
           </Link>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rncb2}>
           <ContentWrapper>
             <Header
               text="choose a language & bridge module type"
@@ -819,12 +821,12 @@ export default class Presentation extends React.Component {
             />
             <Image
               src={images.rncb}
-              height="12em"
+              height="20em"
               style={{ borderRadius: '6px' }}
             />
           </ContentWrapper>
         </Slide>
-        <Slide {...slideProps}>
+        <Slide {...slideProps} notes={notes.rncb3}>
           <ContentWrapper>
             <Header margin="1em 0em 1.2em 0em" text="no more boilerplate 🎉" />
             <div
@@ -836,18 +838,38 @@ export default class Presentation extends React.Component {
             >
               <Image
                 src={images.rncbSample}
-                height="13em"
-                margin="0em .5em 0em 0em"
-                style={{ borderRadius: '6px' }}
-              />
-              <Image
-                src={images.rncbSample2}
-                height="13em"
-                margin="0em 0em 0em .5em"
+                height="20em"
                 style={{ borderRadius: '6px' }}
               />
             </div>
           </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps} notes={notes.rncb4}>
+          <ContentWrapper>
+            <Header text="comparing bridging template generators" />
+            <ComparisonTable />
+          </ContentWrapper>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgImage={images.highTrestleBridge}
+          bgDarken={0.4}
+          maxWidth="90%"
+          maxHeight="90%"
+          notes={notes.closing}
+        >
+          <Link href="https://github.com/peggyrayzis/react-native-create-bridge">
+            <Text
+              textFont="Yanone Kaffeesatz"
+              lineHeight={1.4}
+              textColor="primary"
+              textSize="2.4em"
+            >
+              <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
+                {`you got this!`.toUpperCase()}
+              </p>
+            </Text>
+          </Link>
         </Slide>
         <Slide
           transition={['fade']}

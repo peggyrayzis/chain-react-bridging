@@ -1,10 +1,11 @@
 const notes = {
   intro: `
   What’s up Chain React?! I am super excited to be kicking off day 2 with you all.
+  i also wanted to thank you all for waking up early with me today. i know it's tough, especially when you've been hitting the karaoke a little too hard or enjoying all the finest craft cider portland has to offer.
   <br/>
   Today, we’re going to talk about bridging in React Native.
   This is a pretty heavy topic so I hope you all have had your coffee this morning
-  i know i’ve had a lot.
+  i know i have.
   `,
   intro2: `
   First I’d like to introduce myself, my name is Peggy Rayzis.
@@ -14,14 +15,13 @@ const notes = {
   I also really love bridges, both of the React Native & real life variety. You'll see some cool bridges in my slides today!
   `,
   bridging: `
-  Alright, now that we got all that out of the way, let’s start talking bridging.
+  Alright, now that we got all that out of the way, let’s start breaking down bridging.
   I’m going to use bridging as a verb a lot this morning - what I mean by that is how we communicate between JS code & native code in React Native.
   `,
   js: `
   How many of you would consider yourself mostly a JS developer? I consider myself one.
-  I think anytime we start venturing into native code coming from a JS background, it kind of feels like this.
-  This is actually a real bridge in Japan by the way. Absolutely terrifying.
-  This bridge & the learning curve for bridging in React Native feels steep & insurmountable.
+  I think anytime we start venturing into native code coming from a JS background, it kind of feels like this. it feels really scary & the learning curve feels really steep.
+  This is actually a real bridge in Japan by the way. i'm from new york, i dont really drive that much so the thought of this is super terrifying.
   `,
   js2: `
   Today, we’re going to make bridging feel more like this.
@@ -48,7 +48,7 @@ const notes = {
   <br />
   - You need to integrate a 3rd party SDK. At Major League Soccer, we have a video platform that didn’t have a React Native SDK. So, we had to bridge the iOS & Android SDKs ourselves.
   <br />
-  - If you are doing any kind of video compression or image filtering where performance is really important, move it to native
+  - If you are doing any kind of video compression or image filtering where performance is really important, move it to native & write a bridge module
   <br />
   - If you are building a brownfield application and reusing native UI components, you probably will be bridging quite a bit
   <br />
@@ -56,11 +56,10 @@ const notes = {
   `,
   rnInternals: `
   I firmly believe that the key to understanding bridging is cracking into React Native internals.
-  Too often, we treat abstractions as a black box.
+  Too often, we treat abstractions as a black box and don't try to see what's underneath the surface. Show of hands - who knows what the message queue is in React Native?
   Today, I'm going to demystify some of the magic behind the RN bridge in hopes that it will help you understand bridging faster.
   `,
   rnInternals2: `
-  Alright let's jump right in!
   Here's a basic cross-platform overview of the threading structure in React Native.
   On the native side, we have the main thread which is responsible for UI.
   We have the shadow queue, which is responsible for layout calculations.
@@ -77,18 +76,18 @@ const notes = {
   rnInternals4: `
   now we're going to dive a little deeper into the mechanics of the bridge.
   when you interact with a react native app, all touch events start on the native side.
-  information about the touch event passes through the bridge where the javascript side reacts
+  information about the touch event passes through the bridge where the javascript side reacts to the information.
   `,
   rnInternals5: `
   in fact, all communication passes through the bridge! this includes everything from creating views, to interacting with native modules, rerendering a component, and more!
   this is why it's really important to understand what's going on.
   all communication across the bridge is asynchronous, which is why you have to communicate via method calls & callbacks
-  all messages must be serialized
+  another thing to note is that all messages must be serialized
   updates are also batched to improve performance.
   this communication channel is pretty similar to a client and a server.
   `,
   rnInternals6: `
-  All of these messages are handled by the messagequeue, which has a native part & a corresponding JS part
+  All of these messages are handled by what's called the messagequeue, which has a native part & a corresponding JS part
   The JS part is really what we care about when it comes to performance.
   if everything is getting passed through this message queue on the JS side, we need to make sure that it isn't congested
   `,
@@ -110,13 +109,13 @@ const notes = {
   `,
   mq3: `
   i'm going to show you some tools to make debugging the messagequeue easier!
-  every message sent over the bridge has this type signature.
+  here's what a message looks like. every message sent over the bridge has this type signature.
   `,
   mq4: `
   the messagequeue also has a spy function that you can hook into to console.log the messages passing through
   here's an example of what this looks like in our prototype at MLS. here, a user is tapping on a video, which renders a video view & plays the video.
   you can see here that the touch event starts with native!
-  this spy feature is pretty chatty though. we need a better way to isolate the specific messages we're trying to debug
+  this spy feature is pretty chatty though. this is hard to read and doesn't tell us much about what's going on. we need a better way to isolate the specific messages we're trying to debug
   `,
   mq5: `
   that tool is rn-snoopy! dotan nahum created it and did an amazing job. it treats the message queue data as a stream so you can filter out the noise & focus on what's important
@@ -129,7 +128,8 @@ const notes = {
   ok, now that we know more about what's going on behind the scenes, we're going to jump into how we bridge native modules & ui components.
   `,
   language: `
-  first you're going to choose your language. if you're building an open source library, i recommend sticking with obj-c & java as they're the most widely supported
+  first you're going to choose your language. if you're building an open source library, i recommend sticking with obj-c & java as they're the most widely supported. you can also choose swift & kotlin.
+  i like these two languages because they most closely remember flow typed javascript so i feel a bit more in my comfort zone.
   `,
   kotlin: `
   i do want to digress for a moment to talk about kotlin because i think it deserves some attention on the big stage.
@@ -180,7 +180,47 @@ const notes = {
   <br />
   just like in react, our view is where we hookup lifecycle events like layoutSubviews and also render any children
   `,
-  nativeModulesIntro: `native modules are a little bit e`,
+  nativeModulesIntro: `native modules are a little bit easier than ui components because they just export methods & constants`,
+  module1: `like we learned earlier, all native modules are global variables at runtime. they're represented by the json above and include any methods & constants defined on the module`,
+  module2: `
+  when we invoke a method on our module from javascript, we send a message to the queue with the method name and any arguments
+  `,
+  module3: `
+  the native side calls the method directly. if there is any information to pass back to javascript, the method can do so either through a callback or an eventemitter
+  `,
+  moduleRecap: `
+  alright lets quickly recap! only one instance of the module is created per bridge. this instance is initialized at runtime,
+  if you want to communicate data from native to js, you can do so with callbacks, promises, or emitting events.
+  if you want to communicate data from js to native, you call methods on the native module and pass in arguments.
+  since JS already knows about the modules constants, accessing them is synchronous.
+  `,
+  rncb1: `
+  after experiencing all of these pain points firsthand, i wanted to find a better way.
+  i also wanted to create a tool to make bridging seem a lot less daunting for javascript developers. so i created react-native-create-bridge, a cli tool that generates bridge templates for native modules & ui components in the language of your choice.
+  `,
+  rncb2: `
+  the cli is really easy to use. you'll globally install it from npm and run create-bridge in the root of your project.
+  from there, the prompts will walk you through a series of questions.
+  you'll specify your module name, which type of bridge you want to create, and which languages you want to support
+  before you know it, you'll have customized bridge templates that look like this.
+  `,
+  rncb3: `
+  another thing i want to point out is that I include links to the docs so you can read more in depth if you're interested.
+  this was to make it as simple as possible for JS devs to get started with bridging, but i plan on adding a config option to remove the comments soon for more experienced users
+  `,
+  rncb4: `
+  react native create bridge isn't the only tool like this out there. i also would like to recommend the awesome work of johannes stein with react-native-create-library.
+  there are a few key differences with our tools, however.
+  create-library is only intended to scaffold open source libraries. it does not generate templates for ui components.
+  while create-bridge was originally intended to be used in existing react native projects, it also works for scaffolding open source libraries.
+  the shoutem team actually used it for their shopify bridge module and had a great experience that they wrote a blog post about
+  <br/>
+  we also differ a bit in the languages we support. create-library is a great choice if you need to support windows. create-bridge supports swift & kotlin.
+  <br/>
+  if there are features that are important to you when bridging, please get in touch! i'd love to hear from you all how you're using create-bridge. i want it to be a one stop shop for bridging, so your feedback is really impt to the success of the project.
+  `,
+  closing: `that was a lot of information but i want to leave you with one more thing. i think sometimes when we start venturing into unfamiliar territory, we need a little bit of a confidence booster.
+  don't be afraid to get your hands dirty with native code. you got this!`,
 };
 
 export default notes;
