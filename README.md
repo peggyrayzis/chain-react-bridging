@@ -2,7 +2,7 @@
 
 ## Slides
 
-Check out the slides here!
+Check out the slides [here](http://chain-react-bridging.surge.sh/)!
 
 ## Questions
 
