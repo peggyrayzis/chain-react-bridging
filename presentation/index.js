@@ -13,7 +13,7 @@ import {
 
 import Header from './header';
 import ContentWrapper from './content-wrapper';
-import ComparisonChart from './comparison-chart';
+import ComparisonTable from './comparison-table';
 import StyledSentence from './sentence';
 import SocialProfiles from './social-profiles';
 import Pie from './pie';
@@ -774,7 +774,7 @@ export default class Presentation extends React.Component {
             textSize="2.4em"
           >
             <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
-              BRIDGING IS ERROR PRONE<br />& TIME CONSUMING 😭
+              WHETHER YOU'RE NEW OR EXPERIENCED, BRIDGING IS PRONE TO ERROR.
             </p>
           </Text>
         </Slide>
@@ -849,6 +849,33 @@ export default class Presentation extends React.Component {
               />
             </div>
           </ContentWrapper>
+        </Slide>
+        <Slide {...slideProps} notes={notes.rncb4}>
+          <ContentWrapper>
+            <Header text="comparing bridging template generators" />
+            <ComparisonTable />
+          </ContentWrapper>
+        </Slide>
+        <Slide
+          transition={['fade']}
+          bgImage={images.highTrestleBridge}
+          bgDarken={0.4}
+          maxWidth="90%"
+          maxHeight="90%"
+          notes={notes.closing}
+        >
+          <Link href="https://github.com/peggyrayzis/react-native-create-bridge">
+            <Text
+              textFont="Yanone Kaffeesatz"
+              lineHeight={1.4}
+              textColor="primary"
+              textSize="2.4em"
+            >
+              <p style={{ textShadow: '1px 1px 2px #2a292f' }}>
+                {`you got this!`.toUpperCase()}
+              </p>
+            </Text>
+          </Link>
         </Slide>
         <Slide
           transition={['fade']}
