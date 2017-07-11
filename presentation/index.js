@@ -13,6 +13,7 @@ import {
 
 import Header from './header';
 import ContentWrapper from './content-wrapper';
+import ComparisonChart from './comparison-chart';
 import StyledSentence from './sentence';
 import SocialProfiles from './social-profiles';
 import Pie from './pie';
