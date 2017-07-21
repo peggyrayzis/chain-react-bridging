@@ -1,5 +1,9 @@
 # Breaking Down React Native Bridging
 
+## Video
+
+Check out the video [here](https://www.youtube.com/watch?v=GiUo88TGebs)!
+
 ## Slides
 
 Check out the slides [here](http://chain-react-bridging.surge.sh/)!
